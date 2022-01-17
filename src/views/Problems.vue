@@ -36,7 +36,7 @@ export default {
   },
   mounted() {
     this.$axios
-      .get("/problems.json")
+      .get("/api/problems.json")
       .then((response) => {
         this.problems = response.data;
       })
