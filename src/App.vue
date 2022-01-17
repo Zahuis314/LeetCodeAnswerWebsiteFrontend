@@ -1,8 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-    </div>
-    <router-view />
+    <b-navbar variant="primary">
+      <b-container>
+        <b-navbar-nav>
+          <router-link class="router-link" tag="li" to="/">
+            Problems
+          </router-link>
+        </b-navbar-nav>
+      </b-container>
+    </b-navbar>
+    <b-container>
+      <router-view />
+    </b-container>
   </div>
 </template>
 
@@ -15,4 +24,15 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.router-link {
+  color: black;
+  cursor: default;
+  &:hover {
+    color: #333;
+  }
+}
+.navbar {
+  background-color: #ffa116 !important;
+}
+</style>
