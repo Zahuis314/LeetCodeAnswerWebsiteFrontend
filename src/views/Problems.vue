@@ -1,13 +1,21 @@
 <template>
   <div>
-    <b-table
-      striped
-      :items="problems"
-      :fields="fields"
-      :sort-by.sync="sortBy"
-      :sort-desc.sync="sortDesc"
-      responsive="sm"
-    />
+    <b-overlay
+      :show="loading"
+      rounded
+      opacity="0.6"
+      spinner-small
+      spinner-variant="primary"
+    >
+      <b-table
+        striped
+        :items="problems"
+        :fields="fields"
+        :sort-by.sync="sortBy"
+        :sort-desc.sync="sortDesc"
+        responsive="sm"
+      />
+    </b-overlay>
   </div>
 </template>
 
