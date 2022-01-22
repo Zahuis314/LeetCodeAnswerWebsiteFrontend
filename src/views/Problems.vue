@@ -58,6 +58,11 @@ export default {
       .get("/api/problems.json")
       .then((response) => {
         this.problems = response.data;
+        this.problems.forEach(function (obj) {
+          if (obj.is_paid_only === true) {
+            obj._rowVariant = "warning";
+          }
+        });
       })
       .catch((error) => {
         console.log(error);
