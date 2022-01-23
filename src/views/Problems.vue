@@ -8,19 +8,30 @@
       spinner-variant="primary"
     >
       <div>
-        <b-form-select v-model="filter.difficulty">
-          <b-form-select-option :value="null">
-            Please select an option
-          </b-form-select-option>
-          <b-form-select-option :value="1">Easy</b-form-select-option>
-          <b-form-select-option :value="2">Medium</b-form-select-option>
-          <b-form-select-option :value="3">Hard</b-form-select-option>
-        </b-form-select>
-        <b-form-select
+        <v-select
+          v-model="filter.difficulty"
+          placeholder="Difficulty"
+          :options="[
+            { label: 'Easy', id: 1 },
+            { label: 'Medium', id: 2 },
+            { label: 'Hard', id: 3 },
+          ]"
+          :reduce="(difficulty) => difficulty.id"
+        >
+        </v-select>
+        <v-select
+          v-model="filter.topic_tags"
+          placeholder="Topic Tags"
+          :options="topic_tags"
+          multiple
+          :reduce="(topicTag) => topicTag.id"
+        >
+        </v-select>
+        <!-- <b-form-select
           v-model="filter.topic_tags"
           :options="topic_tags"
           multiple
-        ></b-form-select>
+        ></b-form-select> -->
       </div>
 
       <b-table
@@ -67,8 +78,11 @@
 </template>
 
 <script>
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
 export default {
   name: "Problems",
+  components: { vSelect },
   data() {
     return {
       problems: [],
