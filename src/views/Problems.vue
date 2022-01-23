@@ -7,6 +7,17 @@
       spinner-small
       spinner-variant="primary"
     >
+      <div>
+        <b-form-select v-model="filter.difficulty">
+          <b-form-select-option :value="null">
+            Please select an option
+          </b-form-select-option>
+          <b-form-select-option :value="1">Easy</b-form-select-option>
+          <b-form-select-option :value="2">Medium</b-form-select-option>
+          <b-form-select-option :value="3">Hard</b-form-select-option>
+        </b-form-select>
+      </div>
+
       <b-table
         striped
         :items="problems"
@@ -58,6 +69,7 @@ export default {
       problems: [],
       filter: {
         page: 1,
+        difficulty: null,
       },
       pagination: {
         total_rows: null,
@@ -77,6 +89,9 @@ export default {
   },
   watch: {
     "filter.page"() {
+      this.fetch_problems();
+    },
+    "filter.difficulty"() {
       this.fetch_problems();
     },
   },
