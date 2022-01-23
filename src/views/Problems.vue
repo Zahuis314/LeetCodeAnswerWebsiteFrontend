@@ -40,6 +40,12 @@
           </div>
         </template>
       </b-table>
+      <b-pagination
+        v-model="filter.page"
+        :total-rows="pagination.total_rows"
+        :per-page="pagination.per_page"
+        aria-controls="my-table"
+      ></b-pagination>
     </b-overlay>
   </div>
 </template>
