@@ -50,6 +50,13 @@ export default {
   data() {
     return {
       problems: [],
+      filter: {
+        page: 1,
+      },
+      pagination: {
+        total_rows: null,
+        per_page: null,
+      },
       sortBy: "question_frontend_id",
       sortDesc: false,
       fields: [
@@ -62,22 +69,33 @@ export default {
       loading: true,
     };
   },
+  watch: {
+    "filter.page"() {
+      this.fetch_problems();
+    },
+  },
+  methods: {
+    fetch_problems() {
+      this.$axios
+        .get("/api/problems.json", { params: this.filter })
+        .then((response) => {
+          this.problems = response.data.problems;
+          this.pagination = response.data.page_data;
+          this.problems.forEach(function (obj) {
+            if (obj.is_paid_only === true) {
+              obj._rowVariant = "warning";
+            }
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
+    },
+  },
   mounted() {
-    this.$axios
-      .get("/api/problems.json")
-      .then((response) => {
-        this.problems = response.data;
-        this.problems.forEach(function (obj) {
-          if (obj.is_paid_only === true) {
-            obj._rowVariant = "warning";
-          }
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        this.errored = true;
-      })
-      .finally(() => (this.loading = false));
+    this.fetch_problems();
   },
 };
 </script>
