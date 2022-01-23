@@ -28,17 +28,25 @@
         <template #cell(acceptance)="data">
           {{ data.item.ac_rate.toFixed(1) }}%
         </template>
+        <template #cell(topic_tags)="data">
+          <div>
+            <b-badge
+              variant="warning"
+              v-for="topicTag in data.value"
+              :key="topicTag.name"
+            >
+              {{ topicTag.name }}
+            </b-badge>
+          </div>
+        </template>
       </b-table>
     </b-overlay>
   </div>
 </template>
 
 <script>
-import { BIconFileEarmarkLock } from "bootstrap-vue";
-
 export default {
   name: "Problems",
-  components: { BIconFileEarmarkLock },
   data() {
     return {
       problems: [],
@@ -49,6 +57,7 @@ export default {
         { key: "title", sortable: true },
         { key: "difficulty", sortable: true },
         { key: "acceptance", sortable: true },
+        { key: "topic_tags" },
       ],
       loading: true,
     };
@@ -76,5 +85,12 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .sr-only {
   display: none !important;
+}
+.badge {
+  margin: 2px;
+}
+.badge-warning {
+  color: #212529;
+  background-color: #ffc107;
 }
 </style>
