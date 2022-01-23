@@ -16,6 +16,11 @@
           <b-form-select-option :value="2">Medium</b-form-select-option>
           <b-form-select-option :value="3">Hard</b-form-select-option>
         </b-form-select>
+        <b-form-select
+          v-model="filter.topic_tags"
+          :options="topic_tags"
+          multiple
+        ></b-form-select>
       </div>
 
       <b-table
@@ -69,8 +74,10 @@ export default {
       problems: [],
       filter: {
         page: 1,
+        topic_tags: [],
         difficulty: null,
       },
+      topic_tags: [],
       pagination: {
         total_rows: null,
         per_page: null,
@@ -92,6 +99,9 @@ export default {
       this.fetch_problems();
     },
     "filter.difficulty"() {
+      this.fetch_problems();
+    },
+    "filter.topic_tags"() {
       this.fetch_problems();
     },
   },
@@ -117,6 +127,9 @@ export default {
   },
   mounted() {
     this.fetch_problems();
+    this.$axios.get("/api/topic_tags.json").then((response) => {
+      this.topic_tags = response.data;
+    });
   },
 };
 </script>
