@@ -43,14 +43,16 @@
         responsive="sm"
       >
         <template #cell(title)="data">
-          {{ data.value }}
-          <b-icon-file-earmark-lock
-            class=""
-            variant="warning"
-            font-scale="1.35"
-            v-if="data.item.is_paid_only"
-          >
-          </b-icon-file-earmark-lock>
+          <router-link :to="{ name: 'ProblemDetail', params: { slug: data.item.slug }}">
+            {{ data.value }}
+            <b-icon-file-earmark-lock
+              class=""
+              variant="warning"
+              font-scale="1.35"
+              v-if="data.item.is_paid_only"
+            >
+            </b-icon-file-earmark-lock>
+          </router-link>
         </template>
         <template #cell(acceptance)="data">
           {{ data.item.ac_rate.toFixed(1) }}%
