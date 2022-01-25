@@ -43,6 +43,7 @@
             <p>{{ this.totalAccepted }}</p>
           </div>
           <ProblemDetailsHints :hints="hints" :style="{ paddingTop: 10 }" />
+          <ProblemDetailsSimilars :problems="similar_problems" />
         </div>
       </div>
     </b-overlay>
@@ -51,9 +52,10 @@
 
 <script>
 import ProblemDetailsHints from "@/components/ProblemDetailsHints.vue";
+import ProblemDetailsSimilars from "@/components/ProblemDetailsSimilars.vue";
 export default {
   name: "ProblemDetail",
-  components: { ProblemDetailsHints },
+  components: { ProblemDetailsHints, ProblemDetailsSimilars },
   data() {
     return {
       content: "",
@@ -67,6 +69,7 @@ export default {
       title: "",
       totalAccepted: 0,
       totalSubmission: 0,
+      similar_problems: [],
       loading: true,
     };
   },
@@ -101,8 +104,13 @@ export default {
           this.question_frontend_id = response.data.question_frontend_id;
           this.solution = response.data.solution;
           this.title = response.data.title;
-          this.totalAccepted = response.data.totalAccepted;
-          this.totalSubmission = response.data.totalSubmission;
+          this.totalAccepted = response.data.totalAccepted
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          this.totalSubmission = response.data.totalSubmission
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          this.similar_problems = response.data.similar_problems;
         })
         .catch((error) => {
           console.log(error);

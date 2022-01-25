@@ -43,7 +43,9 @@
         responsive="sm"
       >
         <template #cell(title)="data">
-          <router-link :to="{ name: 'ProblemDetail', params: { slug: data.item.slug }}">
+          <router-link
+            :to="{ name: 'ProblemDetail', params: { slug: data.item.slug } }"
+          >
             {{ data.value }}
             <b-icon-file-earmark-lock
               class=""
