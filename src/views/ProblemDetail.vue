@@ -13,34 +13,36 @@
       <div id="problem">
         <div id="problem-content">
           <div id="problem-text" v-html="this.content"></div>
-          <code id="problem-code">
+          <code id="problem-code" v-if="metaData">
             public {{ this.function_signature }}{
             <br />
             }
           </code>
         </div>
         <div id="problem-details">
-          <div>
-            <span>Difficulty: {{ this.difficulty }}</span>
+          <div class="splitted-detail">
+            <p>Difficulty:</p>
+            <p class="font-bold" :style="{ color: color }">
+              {{ this.difficulty }}
+            </p>
           </div>
-          <div>
-            <span>Likes: {{ this.likes }}</span>
+          <div class="splitted-detail">
+            <p>Likes:</p>
+            <p>{{ this.likes }}</p>
           </div>
-          <div>
-            <span>Dislikes: {{ this.dislikes }}</span>
+          <div class="splitted-detail">
+            <p>Dislikes:</p>
+            <p>{{ this.dislikes }}</p>
           </div>
-          <div>
-            <span>Submission: {{ this.totalSubmission }}</span>
+          <div class="splitted-detail">
+            <p>Submission:</p>
+            <p>{{ this.totalSubmission }}</p>
           </div>
-          <div>
-            <span>Accepted: {{ this.totalAccepted }}</span>
+          <div class="splitted-detail">
+            <p>Accepted:</p>
+            <p>{{ this.totalAccepted }}</p>
           </div>
-          <div>
-            Hints: 
-            <ul>
-              <li v-for="(hint, index) in hints" :key="index">{{ hint }}</li>
-            </ul>
-          </div>
+          <ProblemDetailsHints :hints="hints" :style="{ paddingTop: 10 }" />
         </div>
       </div>
     </b-overlay>
@@ -48,8 +50,10 @@
 </template>
 
 <script>
+import ProblemDetailsHints from "@/components/ProblemDetailsHints.vue";
 export default {
   name: "ProblemDetail",
+  components: { ProblemDetailsHints },
   data() {
     return {
       content: "",
@@ -57,7 +61,7 @@ export default {
       hints: [],
       dislikes: 0,
       likes: 0,
-      metaData: {},
+      metaData: { name: "", params: [], return: {} },
       question_frontend_id: "",
       solution: null,
       title: "",
@@ -68,12 +72,18 @@ export default {
   },
   computed: {
     function_signature() {
-      return `${this.metaData.return.type} ${this.metaData.name}(${this.problem_input})`;
+      if (this.metaData.params) {
+        var problem_input = this.metaData.params
+          .map((param) => `${param.type} ${param.name}`)
+          .join(", ");
+        return `${this.metaData.return.type} ${this.metaData.name}(${problem_input})`;
+      } else {
+        return "";
+      }
     },
-    problem_input() {
-      return this.metaData.params
-        .map((param) => `${param.type} ${param.name}`)
-        .join(", ");
+    color() {
+      var colors = { Easy: "#00d400", Medium: "#bebe00", Hard: "red" };
+      return colors[this.difficulty];
     },
   },
   methods: {
@@ -128,12 +138,23 @@ export default {
       box-shadow: 0px 0px 10px 10px #eee;
       margin-bottom: 20px;
     }
-    #problem-code{
+    #problem-code {
       padding-bottom: 30px;
     }
   }
   > #problem-details {
     flex-basis: 30%;
+    .splitted-detail {
+      clear: both;
+      :first-child {
+        float: left;
+        margin-bottom: 5px;
+      }
+      :last-child {
+        float: right;
+        margin-bottom: 5px;
+      }
+    }
   }
 }
 </style>

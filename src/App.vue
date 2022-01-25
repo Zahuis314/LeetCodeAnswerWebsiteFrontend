@@ -36,3 +36,11 @@ export default {
   background-color: #ffa116 !important;
 }
 </style>
+<style lang="scss">
+* {
+  color: darkslategray;
+}
+.font-bold {
+  font-weight: bold;
+}
+</style>
