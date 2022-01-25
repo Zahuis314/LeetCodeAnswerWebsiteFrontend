@@ -3,7 +3,7 @@
     <b-navbar variant="primary">
       <b-container>
         <b-navbar-nav>
-          <router-link class="router-link" tag="li" to="/">
+          <router-link class="router-link" tag="li" :to="{ name: 'Problems' }">
             Problems
           </router-link>
         </b-navbar-nav>
@@ -34,5 +34,13 @@ export default {
 }
 .navbar {
   background-color: #ffa116 !important;
+}
+</style>
+<style lang="scss">
+* {
+  color: darkslategray;
+}
+.font-bold {
+  font-weight: bold;
 }
 </style>
