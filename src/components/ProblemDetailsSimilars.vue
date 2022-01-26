@@ -24,13 +24,13 @@
       <b-card-body>
         <b-card-text>
           <b-badge
-            :class="['badgets', problem[2].toLowerCase()]"
+            :class="['badgets', problem.difficulty.toLowerCase()]"
             v-for="(problem, index) in problems"
             :key="index"
             router-tag="span"
-            :to="{ name: 'ProblemDetail', params: { slug: problem[1] } }"
+            :to="{ name: 'ProblemDetail', params: { slug: problem.slug } }"
           >
-            {{ problem[0] }}
+            {{ problem.title }}
           </b-badge>
         </b-card-text>
       </b-card-body>
