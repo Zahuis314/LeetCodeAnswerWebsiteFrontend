@@ -21,3 +21,9 @@ export default {
   props: ["hints"],
 };
 </script>
+
+<style lang="scss" scoped>
+.card-header{
+  background-color: unset;
+}
+</style>

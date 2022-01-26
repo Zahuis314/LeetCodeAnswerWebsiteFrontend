@@ -13,8 +13,9 @@
       <div id="problem">
         <div id="problem-content">
           <div id="problem-text" v-html="this.content"></div>
+          <h3>Code</h3>
           <code id="problem-code" v-if="metaData">
-            public {{ this.function_signature }}{
+            {{ this.function_signature }}{
             <br />
             }
           </code>

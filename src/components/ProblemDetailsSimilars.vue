@@ -1,5 +1,5 @@
 <template>
-  <div style="clear: both">
+  <div class="similars">
     <b-button
       class="collapse-button"
       v-b-toggle.similars
@@ -51,6 +51,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.similars{
+  clear: both;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
 .collapse-button {
   width: 100%;
   text-align: left;
