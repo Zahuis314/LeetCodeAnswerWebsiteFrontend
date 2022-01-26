@@ -2,13 +2,13 @@
   <div style="clear: both">
     <b-button
       class="collapse-button"
-      v-b-toggle.similars
+      v-b-toggle.topic-tags
       variant="light"
       :class="visible ? null : 'collapsed'"
       :aria-expanded="visible ? 'true' : 'false'"
       @click="visible = !visible"
     >
-      Similars
+      Topic Tags
       <b-icon-chevron-up
         class="collapse-arrow"
         font-scale="1.35"
@@ -20,17 +20,15 @@
         v-if="visible"
       />
     </b-button>
-    <b-collapse id="similars" accordion="similars" role="tabpanel">
+    <b-collapse id="topic-tags" accordion="topic-tags" role="tabpanel">
       <b-card-body>
         <b-card-text>
           <b-badge
-            :class="['badgets', problem.difficulty.toLowerCase()]"
-            v-for="(problem, index) in problems"
+            class="badgets"
+            v-for="(topic, index) in topicTags"
             :key="index"
-            router-tag="span"
-            :to="{ name: 'ProblemDetail', params: { slug: problem.slug } }"
           >
-            {{ problem.title }}
+            {{ topic.name }}
           </b-badge>
         </b-card-text>
       </b-card-body>
@@ -40,13 +38,13 @@
 
 <script>
 export default {
-  name: "ProblemDetailsSimilars",
+  name: "ProblemDetailsTopicTags",
   data() {
     return {
       visible: true,
     };
   },
-  props: ["problems"],
+  props: ["topicTags"],
 };
 </script>
 
@@ -58,20 +56,12 @@ export default {
     float: right;
   }
 }
-.easy {
-  background-color: #00d400;
-}
-.medium {
-  background-color: #bebe00;
-}
-.hard {
-  background-color: red;
-}
 .badgets {
   display: inline-block;
   margin: 3px 5px;
   padding: 5px;
   overflow-wrap: normal;
+  background-color: gray;
   white-space: pre-line;
 }
 </style>

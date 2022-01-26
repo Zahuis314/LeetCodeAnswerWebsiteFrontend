@@ -37,10 +37,11 @@ export default {
 }
 </style>
 <style lang="scss">
-* {
-  color: darkslategray;
-}
 .font-bold {
   font-weight: bold;
+}
+body {
+  --bs-body-bg: ghostwhite;
+  --bs-body-color: darkslategray;
 }
 </style>
