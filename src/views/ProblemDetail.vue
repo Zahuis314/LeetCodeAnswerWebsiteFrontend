@@ -44,6 +44,7 @@
           </div>
           <ProblemDetailsHints :hints="hints" :style="{ paddingTop: 10 }" />
           <ProblemDetailsSimilars :problems="similar_problems" />
+          <ProblemDetailsTopicTags :topicTags="topicTags" />
         </div>
       </div>
     </b-overlay>
@@ -53,9 +54,14 @@
 <script>
 import ProblemDetailsHints from "@/components/ProblemDetailsHints.vue";
 import ProblemDetailsSimilars from "@/components/ProblemDetailsSimilars.vue";
+import ProblemDetailsTopicTags from "@/components/ProblemDetailsTopicTags.vue";
 export default {
   name: "ProblemDetail",
-  components: { ProblemDetailsHints, ProblemDetailsSimilars },
+  components: {
+    ProblemDetailsHints,
+    ProblemDetailsSimilars,
+    ProblemDetailsTopicTags,
+  },
   data() {
     return {
       content: "",
@@ -70,6 +76,7 @@ export default {
       totalAccepted: 0,
       totalSubmission: 0,
       similar_problems: [],
+      topicTags: [],
       loading: true,
     };
   },
@@ -111,6 +118,7 @@ export default {
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
           this.similar_problems = response.data.similar_problems;
+          this.topicTags = response.data.topic_tags;
         })
         .catch((error) => {
           console.log(error);
