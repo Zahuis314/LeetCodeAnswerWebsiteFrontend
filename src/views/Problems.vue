@@ -45,6 +45,7 @@
         <template #cell(title)="data">
           <router-link
             :to="{ name: 'ProblemDetail', params: { slug: data.item.slug } }"
+            class="problem-title"
           >
             {{ data.value }}
             <b-icon-file-earmark-lock
@@ -103,7 +104,7 @@ export default {
       sortBy: "question_frontend_id",
       sortDesc: false,
       fields: [
-        { key: "question_frontend_id", label: "Id", sortable: true },
+        { key: "question_frontend_id", label: "#", sortable: true },
         { key: "title", sortable: true },
         { key: "difficulty", sortable: true },
         { key: "acceptance", sortable: true },
@@ -162,5 +163,12 @@ export default {
 .badge-warning {
   color: #212529;
   background-color: #ffc107;
+}
+.problem-title {
+  text-decoration: none;
+  color: var(--bs-table-striped-color);
+  &:hover{
+    color: mediumblue;
+  }
 }
 </style>
