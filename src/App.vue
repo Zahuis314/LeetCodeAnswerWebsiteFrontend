@@ -50,41 +50,82 @@ body {
   --bs-body-bg: ghostwhite;
   --bs-body-color: darkslategray;
 }
-#animation-title{
+#animation-title {
   font-family: monospace;
   display: flex;
   width: 140px;
   margin-left: 20px;
 }
-#animation-think::after{
-  white-space: nowrap;
+#animation-think::after {
+  // white-space: nowrap;
   overflow: hidden;
   display: flex;
   content: "";
-  animation: typewriting 9s steps(5,start) infinite, blinking 1s infinite;
+  animation: typewriting 9s steps(5, start) infinite, blinking 1s infinite;
   border-right: 2px solid;
 }
-#animation-tile{
+#animation-tile {
   display: inline;
 }
 @keyframes typewriting {
-  0% { width: 0%; content: "Think"; animation-timing-function: steps( 5,start ) ; };
-  6.25% { width: 100%; };
-  21.25% { width: 100%; };
-  24.99% { width: 0%; content: "Think"; };
-  25.00% { width: 0%; content: "Design"; animation-timing-function: steps( 6,start ) ; };
-  31.25% { width: 100%; };
-  46.25% { width: 100%; };
-  49.99% { width: 0%; content: "Design";}  ;
-  50.00% { width: 0%; content: "Code"; animation-timing-function: steps( 4,start ) ; };
-  65% { width: 100%; };
-  92.50% { width: 100%; };
-  100% { width: 0%; content: "Code"; };
+  0% {
+    width: 0%;
+    content: "Think";
+    animation-timing-function: steps(5, start);
+  }
+  6.25% {
+    width: 100%;
+  }
+  21.25% {
+    width: 100%;
+  }
+  24.99% {
+    width: 0%;
+    content: "Think";
+  }
+  25.00% {
+    width: 0%;
+    content: "Design";
+    animation-timing-function: steps(6, start);
+  }
+  31.25% {
+    width: 100%;
+  }
+  46.25% {
+    width: 100%;
+  }
+  49.99% {
+    width: 0%;
+    content: "Design";
+  }
+  50.00% {
+    width: 0%;
+    content: "Code";
+    animation-timing-function: steps(4, start);
+  }
+  65% {
+    width: 100%;
+  }
+  92.50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+    content: "Code";
+  }
 }
 @keyframes blinking {
-  0% { border-color: black; }
-  45% { border-color: black; }
-  45.001% { border-color: transparent }
-  100% { border-color: transparent }
+  0% {
+    border-color: black;
+  }
+  45% {
+    border-color: black;
+  }
+  45.001% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: transparent;
+  }
 }
 </style>
