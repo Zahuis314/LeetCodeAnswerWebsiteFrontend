@@ -167,7 +167,7 @@ export default {
 .problem-title {
   text-decoration: none;
   color: var(--bs-table-striped-color);
-  &:hover{
+  &:hover {
     color: mediumblue;
   }
 }
