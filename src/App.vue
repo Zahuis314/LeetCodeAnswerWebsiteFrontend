@@ -78,10 +78,12 @@ body {
   }
   21.25% {
     width: 100%;
+    animation-timing-function: steps(5, start);
   }
   24.99% {
     width: 0%;
     content: "Think";
+    animation-timing-function: steps(5, start);
   }
   25.00% {
     width: 0%;
@@ -93,10 +95,12 @@ body {
   }
   46.25% {
     width: 100%;
+    animation-timing-function: steps(6, start);
   }
   49.99% {
     width: 0%;
     content: "Design";
+    animation-timing-function: steps(6, start);
   }
   50.00% {
     width: 0%;
@@ -108,10 +112,12 @@ body {
   }
   92.50% {
     width: 100%;
+    animation-timing-function: steps(4, start);
   }
   100% {
     width: 0%;
     content: "Code";
+    animation-timing-function: steps(4, start);
   }
 }
 @keyframes blinking {
